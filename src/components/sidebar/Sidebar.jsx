@@ -61,7 +61,6 @@ export default function Sidebar() {
             {listItem.map((item, index) => (
               <Accordion>
                 <AccordionSummary
-                  //   expandIcon={<ExpandMoreIcon />}
                   aria-controls="panel1a-content"
                   id="panel1a-header"
                   key={index}
@@ -78,9 +77,7 @@ export default function Sidebar() {
                     }}
                   >
                     <ListItemButton sx={{ width: "100%" }}>
-                      <ListItemIcon>
-                        {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      </ListItemIcon>
+                      <ListItemIcon></ListItemIcon>
                       <ListItemText primary={item.subLink.sub.name} />
                     </ListItemButton>
                   </Link>
@@ -93,9 +90,7 @@ export default function Sidebar() {
                     }}
                   >
                     <ListItemButton sx={{ width: "100%" }}>
-                      <ListItemIcon>
-                        {/* {index % 2 === 0 ? <InboxIcon /> : <MailIcon />} */}
-                      </ListItemIcon>
+                      <ListItemIcon></ListItemIcon>
                       <ListItemText primary={item.subLink.sub1.name} />
                     </ListItemButton>
                   </Link>
