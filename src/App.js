@@ -12,16 +12,16 @@ function App() {
   const currentUser = useSelector((state) => state.auth.user);
 
   const RequireAuth = ({ children }) => {
-    return currentUser ? children : <Navigate to="/login" />;
+    return currentUser ? children : <Navigate to="/admin/login" />;
   };
+
   return (
     <Routes>
-      <Route path="/login" element={<Login />} />
-
       {/* Admin routes */}
+      <Route path="/admin/login" element={<Login />} />
       <Route element={<AdminLayout />}>
         <Route
-          path="/"
+          path="/admin"
           element={
             <RequireAuth>
               <AdminHome />
@@ -29,7 +29,7 @@ function App() {
           }
         />
         <Route
-          path="products"
+          path="/admin/products"
           element={
             <RequireAuth>
               <Products />
@@ -40,8 +40,8 @@ function App() {
 
       {/* Customer Routes */}
       <Route element={<UserLayout />}>
-        <Route path="homepage" element={<Homepage />} />
-        <Route path="checkout" element={<Checkout />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Route>
     </Routes>
   );

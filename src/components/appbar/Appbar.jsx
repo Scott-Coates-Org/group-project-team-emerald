@@ -31,7 +31,7 @@ export default function Appbar() {
   };
   const logoutHandler = () => {
     signOut(auth);
-    dispatch(logout(navigate("/login")));
+    dispatch(logout(navigate("/admin/login")));
   };
   return (
     <AppBar

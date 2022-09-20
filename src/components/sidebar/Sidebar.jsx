@@ -19,22 +19,22 @@ const listItem = [
   {
     name: "Products",
     subLink: {
-      sub: { name: "All Products", linkTo: "products" },
-      sub1: { name: "Add Product", linkTo: "/" },
+      sub: { name: "All Products", linkTo: "/admin/products" },
+      sub1: { name: "Add Product", linkTo: "/admin" },
     },
   },
   {
     name: "Bookings",
     subLink: {
-      sub: { name: "Book 1", linkTo: "products" },
-      sub1: { name: "Book 2", linkTo: "/" },
+      sub: { name: "Book 1", linkTo: "/admin/products" },
+      sub1: { name: "Book 2", linkTo: "/admin" },
     },
   },
   {
     name: "Rooms",
     subLink: {
-      sub: { name: "Room 1", linkTo: "products" },
-      sub1: { name: "Room 2", linkTo: "/" },
+      sub: { name: "Room 1", linkTo: "/admin/products" },
+      sub1: { name: "Room 2", linkTo: "/admin" },
     },
   },
 ];
