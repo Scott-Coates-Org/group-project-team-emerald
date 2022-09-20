@@ -33,8 +33,8 @@ const listItem = [
   {
     name: "Rooms",
     subLink: {
-      sub: { name: "Room 1", linkTo: "/admin/products" },
-      sub1: { name: "Room 2", linkTo: "/admin" },
+      sub: { name: "All Room", linkTo: "/admin/products" },
+      sub1: { name: "Add Room", linkTo: "/admin/rooms/add" },
     },
   },
 ];
