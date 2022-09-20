@@ -20,7 +20,7 @@ const Login = () => {
             email: user.user.email,
             accessToken: user.user.accessToken,
           },
-          navigate("/")
+          navigate("/admin")
         )
       );
     }
