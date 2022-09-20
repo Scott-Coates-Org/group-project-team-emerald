@@ -7,6 +7,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
+import { uploadImage } from "../../utils/firebase";
 
 const Container = styled(Box)({
   padding: "20px",
@@ -28,17 +29,17 @@ const Input = styled(TextField)({
 });
 
 export default function AddRoom() {
-  const [roomName, setRoomName] = useState("");
+  const [name, setName] = useState("");
   const [capacity, setCapacity] = useState(0);
   const [file, setFile] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
-      roomName,
+      name,
       capacity,
-      file,
+      image: !file ? "" : await uploadImage(file),
     };
 
     console.log(data);
@@ -51,7 +52,7 @@ export default function AddRoom() {
   };
 
   const handleRoomName = (e) => {
-    setRoomName(e.target.value);
+    setName(e.target.value);
   };
 
   const handleCapacity = (e) => {
@@ -78,7 +79,7 @@ export default function AddRoom() {
           fullWidth
           label="Room Name"
           type="text"
-          value={roomName}
+          value={name}
           onChange={handleRoomName}
         />
         <Input
