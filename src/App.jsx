@@ -15,6 +15,7 @@ const AdminHome = lazy(() => import("./pages/admin/index"));
 const Homepage = lazy(() => import("./pages/customer/homepage/homepage"));
 const Checkout = lazy(() => import("./pages/customer/checkout/checkout"));
 const AddRoom = lazy(() => import("./components/AddRoom/AddRoom"));
+const AddProduct = lazy(() => import("./components/AddProduct/AddProduct"));
 
 function App() {
   const { user } = useAuth();
@@ -40,6 +41,14 @@ function App() {
               element={
                 <RequireAuth>
                   <Products />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/admin/addProducts"
+              element={
+                <RequireAuth>
+                  <AddProduct />
                 </RequireAuth>
               }
             />
