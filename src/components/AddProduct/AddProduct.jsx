@@ -8,7 +8,12 @@ import {
   TextField,
 } from "@mui/material";
 import SelectField from "../common/Select";
-import { createCollection, uploadImage } from "../../utils/firebase";
+import {
+  createCollection,
+  getCollection,
+  uploadImage,
+} from "../../utils/firebase";
+import { useEffect } from "react";
 
 const Container = styled(Box)({
   padding: "20px",
@@ -35,8 +40,24 @@ export default function AddProduct() {
   const [price, setPrice] = useState(0);
   const [type, setType] = useState("");
   const [room, setRoom] = useState("");
+  const [roomOption, setRoomOption] = useState([]);
   const [duration, setDuration] = useState("");
   const [photo, setPhoto] = useState();
+
+  //Get collection of room for Select Options
+  useEffect(() => {
+    async function getData() {
+      const data = await getCollection("rooms");
+      if (data.length) {
+        const rooms = data.map(({ id, name }) => ({
+          name,
+          value: id,
+        }));
+        setRoomOption(rooms);
+      }
+    }
+    getData();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -132,11 +153,7 @@ export default function AddProduct() {
           id="room"
           name="Room"
           value={room}
-          options={[
-            { name: "room1", value: "room1" },
-            { name: "room2", value: "room2" },
-            { name: "room3", value: "room3" },
-          ]}
+          options={roomOption}
           onChange={handleRoom}
         />
         <SelectField
