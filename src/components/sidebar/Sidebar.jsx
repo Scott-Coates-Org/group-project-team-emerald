@@ -20,7 +20,7 @@ const listItem = [
     name: "Products",
     subLink: {
       sub: { name: "All Products", linkTo: "/admin/products" },
-      sub1: { name: "Add Product", linkTo: "/admin" },
+      sub1: { name: "Add Product", linkTo: "/admin/addProducts" },
     },
   },
   {

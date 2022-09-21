@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from "uuid";
 import { getStorage, ref, uploadBytes } from "@firebase/storage";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore, getDocs } from "firebase/firestore";
 
 export async function uploadImage(file) {
   if (!file) return "";
@@ -21,4 +21,19 @@ export async function createCollection(folder, data) {
   } catch (error) {
     return false;
   }
+}
+
+export async function getCollection(name) {
+  const db = getFirestore();
+  const querySnapshot = await getDocs(collection(db, "rooms"));
+
+  const res = [];
+  querySnapshot.forEach((doc) => {
+    res.push({
+      id: doc.id,
+      ...doc.data(),
+    });
+  });
+
+  return res;
 }
