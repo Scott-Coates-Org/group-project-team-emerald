@@ -73,7 +73,7 @@ Web-based, SaaS eCommerce app for managing a trampoline park online!
 
 ### Public URL
 
-[Replace me with the link to your app's URL](https://www.google.com/)
+[https://team-emerald.web.app/](https://team-emerald.web.app/)
 
 ## Team Members Roll Call
 
