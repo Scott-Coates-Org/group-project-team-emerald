@@ -11,7 +11,7 @@ import {
   ListItemText,
   Toolbar,
 } from "@mui/material";
-import React from "react";
+
 import { Link } from "react-router-dom";
 const drawerWidth = 240;
 //list items side bar
@@ -49,7 +49,7 @@ export default function Sidebar() {
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
             boxSizing: "border-box",
           },
@@ -58,12 +58,11 @@ export default function Sidebar() {
         <Toolbar />
         <Box sx={{ overflow: "auto" }}>
           <List>
-            {listItem.map((item, index) => (
-              <Accordion>
+            {listItem.map((item) => (
+              <Accordion key={item.name}>
                 <AccordionSummary
                   aria-controls="panel1a-content"
                   id="panel1a-header"
-                  key={index}
                 >
                   {item.name}
                 </AccordionSummary>
@@ -77,7 +76,7 @@ export default function Sidebar() {
                     }}
                   >
                     <ListItemButton sx={{ width: "100%" }}>
-                      <ListItemIcon></ListItemIcon>
+                      <ListItemIcon />
                       <ListItemText primary={item.subLink.sub.name} />
                     </ListItemButton>
                   </Link>
@@ -90,7 +89,7 @@ export default function Sidebar() {
                     }}
                   >
                     <ListItemButton sx={{ width: "100%" }}>
-                      <ListItemIcon></ListItemIcon>
+                      <ListItemIcon />
                       <ListItemText primary={item.subLink.sub1.name} />
                     </ListItemButton>
                   </Link>
