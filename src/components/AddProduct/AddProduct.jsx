@@ -8,6 +8,7 @@ import {
   TextField,
 } from "@mui/material";
 import SelectField from "../common/Select";
+import { createCollection, uploadImage } from "../../utils/firebase";
 
 const Container = styled(Box)({
   padding: "20px",
@@ -37,20 +38,20 @@ export default function AddProduct() {
   const [duration, setDuration] = useState("");
   const [photo, setPhoto] = useState();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const data = {
+    const res = await createCollection("products", {
       name,
       description,
       price,
       type,
       room,
       duration,
-      photo: photo ? photo : "",
-    };
+      photo: await uploadImage(photo),
+    });
 
-    console.log(data);
+    res ? console.log("Room Created") : console.log("Fail to Create Room");
   };
 
   const onFileUpload = (e) => {
