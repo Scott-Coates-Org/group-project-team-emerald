@@ -7,6 +7,7 @@ import Checkout from "./pages/customer/checkout/checkout";
 import AdminLayout from "./components/adminLayout";
 import UserLayout from "./components/userLayout";
 import AddRoom from "./components/AddRoom/AddRoom";
+import AddProduct from "./components/AddProduct/AddProduct";
 import { useSelector } from "react-redux";
 
 function App() {
@@ -34,6 +35,14 @@ function App() {
           element={
             <RequireAuth>
               <Products />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/admin/addProducts"
+          element={
+            <RequireAuth>
+              <AddProduct />
             </RequireAuth>
           }
         />
