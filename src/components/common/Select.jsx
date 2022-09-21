@@ -16,7 +16,7 @@ export default function SelectField({ id, name, value, options, onChange }) {
       >
         {options?.map(({ value, name }, index) => {
           return (
-            <MenuItem key={index} value={value} sx={{ textAlign: "left" }}>
+            <MenuItem key={name} value={value} sx={{ textAlign: "left" }}>
               {capitalizeFirstLetter(name)}
             </MenuItem>
           );
