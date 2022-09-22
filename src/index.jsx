@@ -1,18 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './redux/store';
-import './index.css';
-import App from './App';
 import { BrowserRouter } from 'react-router-dom';
+import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { store } from './redux/store';
+import theme from './theme';
+import App from './App';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import './index.css';
+
+const root = createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ThemeProvider>
     </Provider>
-  </React.StrictMode>
+  </StrictMode>
 );
