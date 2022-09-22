@@ -1,9 +1,9 @@
-import { createContext, useContext, useEffect, useState } from "react";
-import { auth } from "../firebase/client";
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import PropTypes from "prop-types";
-import { PageLoader } from "../components/PageLoader";
+import { createContext, useContext, useEffect, useState } from 'react';
+import { auth } from '../firebase/client';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import PropTypes from 'prop-types';
+import { PageLoader } from '../components/PageLoader';
 
 const AuthContext = createContext(null);
 
