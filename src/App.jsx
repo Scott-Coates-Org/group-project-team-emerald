@@ -2,8 +2,10 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import AdminLayout from './components/adminLayout';
-import UserLayout from './components/userLayout';
+import { PageLoader } from './components/PageLoader';
+import { Guest as LayoutGuest } from './layouts/Guest';
+import { Admin as LayoutAdmin } from './layouts/Admin';
+import { User as LayoutUser } from './layouts/User';
 
 const Products = lazy(() => import('./pages/product/product'));
 const Login = lazy(() => import('./pages/login/Login'));
@@ -15,17 +17,18 @@ const AddProduct = lazy(() => import('./components/AddProduct/AddProduct'));
 
 function App() {
   const currentUser = useSelector(state => state.auth.user);
+  const Layout = currentUser ? LayoutAdmin : LayoutGuest;
 
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/admin/login" />;
   };
 
   return (
-    <Suspense fallback={<h1>Loading..</h1>}>
+    <Suspense fallback={<PageLoader />}>
       <Routes>
         {/* Admin routes */}
-        <Route path="/admin/login" element={<Login />} />
-        <Route element={<AdminLayout />}>
+        <Route element={<Layout />}>
+          <Route path="/admin/login" element={<Login />} />
           <Route
             path="/admin"
             element={
@@ -69,7 +72,7 @@ function App() {
         </Route>
 
         {/* Customer Routes */}
-        <Route element={<UserLayout />}>
+        <Route element={<LayoutUser />}>
           <Route path="/" element={<Homepage />} />
           <Route path="/checkout" element={<Checkout />} />
         </Route>
