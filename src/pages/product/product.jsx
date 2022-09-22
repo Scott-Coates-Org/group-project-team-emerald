@@ -1,12 +1,11 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell, { tableCellClasses } from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -19,11 +18,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
+  '&:nth-of-type(odd)': {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  "&:last-child td, &:last-child th": {
+  '&:last-child td, &:last-child th': {
     border: 0,
   },
 }));
@@ -34,34 +33,34 @@ function createData(name, img, price, type) {
 
 const rows = [
   createData(
-    "Product name",
-    "https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    'Product name',
+    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
     20.0,
-    "pass"
+    'pass'
   ),
   createData(
-    "Product name",
-    "https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    'Product name',
+    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
     20.0,
-    "pass"
+    'pass'
   ),
   createData(
-    "Product name",
-    "https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    'Product name',
+    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
     20.0,
-    "pass"
+    'pass'
   ),
   createData(
-    "Product name",
-    "https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    'Product name',
+    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
     20.0,
-    "pass"
+    'pass'
   ),
   createData(
-    "Product name",
-    "https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    'Product name',
+    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
     20.0,
-    "pass"
+    'pass'
   ),
 ];
 
@@ -83,16 +82,16 @@ export default function Product() {
                 component="th"
                 scope="row"
                 sx={{
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  display: "flex",
-                  gap: "20px",
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  display: 'flex',
+                  gap: '20px',
                 }}
               >
                 <img
                   src={row.img}
                   alt="product "
-                  style={{ width: "60px", height: "50px", objectFit: "cover" }}
+                  style={{ width: '60px', height: '50px', objectFit: 'cover' }}
                 />
                 {row.name}
               </StyledTableCell>

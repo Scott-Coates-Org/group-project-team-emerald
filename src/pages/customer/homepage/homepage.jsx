@@ -1,6 +1,5 @@
-import { Button, Card, CardContent } from "@mui/material";
-import styles from "./homepage.module.css";
-import React from "react";
+import { Button, Card, CardContent } from '@mui/material';
+import styles from './homepage.module.css';
 
 export default function Homepage() {
   return (

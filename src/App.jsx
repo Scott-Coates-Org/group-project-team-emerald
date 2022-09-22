@@ -1,14 +1,14 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import Products from "./pages/product/product";
-import Login from "./pages/login/Login";
-import AdminHome from "./pages/admin/index";
-import Homepage from "./pages/customer/homepage/homepage";
-import Checkout from "./pages/customer/checkout/checkout";
-import AdminLayout from "./components/adminLayout";
-import UserLayout from "./components/userLayout";
-import AddRoom from "./components/AddRoom/AddRoom";
-import AddProduct from "./components/AddProduct/AddProduct";
-import { useSelector } from "react-redux";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Products from './pages/product/product';
+import Login from './pages/login/Login';
+import AdminHome from './pages/admin/index';
+import Homepage from './pages/customer/homepage/homepage';
+import Checkout from './pages/customer/checkout/checkout';
+import AdminLayout from './components/adminLayout';
+import UserLayout from './components/userLayout';
+import AddRoom from './components/AddRoom/AddRoom';
+import AddProduct from './components/AddProduct/AddProduct';
+import { useSelector } from 'react-redux';
 
 function App() {
   const currentUser = useSelector((state) => state.auth.user);
