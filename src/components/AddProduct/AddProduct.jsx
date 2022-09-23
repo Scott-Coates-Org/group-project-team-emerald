@@ -59,7 +59,7 @@ export default function AddProduct() {
     getData();
   }, []);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const res = await createCollection('products', {
@@ -75,33 +75,33 @@ export default function AddProduct() {
     res ? console.log('Room Created') : console.log('Fail to Create Room');
   };
 
-  const onFileUpload = (e) => {
+  const onFileUpload = e => {
     const file = e.target.files;
     if (file.length === 0) return;
     if (file) setPhoto(file[0]);
   };
 
-  const handleName = (e) => {
+  const handleName = e => {
     setName(e.target.value);
   };
 
-  const handleDescription = (e) => {
+  const handleDescription = e => {
     setDescription(e.target.value);
   };
 
-  const handleDuration = (e) => {
+  const handleDuration = e => {
     setDuration(e.target.value);
   };
 
-  const handlePrice = (e) => {
+  const handlePrice = e => {
     setPrice(e.target.value);
   };
 
-  const handleType = (e) => {
+  const handleType = e => {
     setType(e.target.value);
   };
 
-  const handleRoom = (e) => {
+  const handleRoom = e => {
     setRoom(e.target.value);
   };
 
@@ -143,9 +143,9 @@ export default function AddProduct() {
           name="Product Type"
           value={type}
           options={[
-            { name: 'bus', value: 'yellow' },
-            { name: 'bus', value: 'yellow' },
-            { name: 'bus', value: 'yellow' },
+            { name: 'Pass', value: 'Pass' },
+            { name: 'Add On', value: 'Add On' },
+            { name: 'Product', value: 'Product' },
           ]}
           onChange={handleType}
         />
@@ -182,7 +182,7 @@ export default function AddProduct() {
                     accept="image/png, image/gif, image/jpeg"
                     style={{ display: 'none' }}
                     type="file"
-                    onChange={(e) => onFileUpload(e)}
+                    onChange={e => onFileUpload(e)}
                   />
                 </Button>
               </InputAdornment>
