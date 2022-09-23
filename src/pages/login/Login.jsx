@@ -1,11 +1,11 @@
-import { useEffect } from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
-import { auth } from "../../firebase/client";
-import { useDispatch } from "react-redux";
-import { login } from "../../redux/authSlice";
+import { useEffect } from 'react';
+import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase/client';
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/authSlice';
 
-import styles from "./login.module.css";
-import { useNavigate } from "react-router-dom";
+import styles from './login.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [signInWithGoogle, user] = useSignInWithGoogle(auth);
@@ -20,7 +20,7 @@ const Login = () => {
             email: user.user.email,
             accessToken: user.user.accessToken,
           },
-          navigate("/admin")
+          navigate('/admin')
         )
       );
     }

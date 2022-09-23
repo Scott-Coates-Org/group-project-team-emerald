@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
 import {
   persistStore,
   persistReducer,
@@ -8,14 +8,14 @@ import {
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import authReducer from "./authSlice";
-import counterReducer from "./counterSlice";
-import usersReducer from "./usersSlice";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import authReducer from './authSlice';
+import counterReducer from './counterSlice';
+import usersReducer from './usersSlice';
+import storage from 'redux-persist/lib/storage';
 
 const persistConfig = {
-  key: "root",
+  key: 'root',
   version: 1,
   storage,
 };

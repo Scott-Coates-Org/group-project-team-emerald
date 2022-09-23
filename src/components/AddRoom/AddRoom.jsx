@@ -1,48 +1,48 @@
-import { useState } from "react";
-import styled from "@emotion/styled";
+import { useState } from 'react';
+import styled from '@emotion/styled';
 import {
   Box,
   Button,
   InputAdornment,
   Typography,
   TextField,
-} from "@mui/material";
-import { createCollection, uploadImage } from "../../utils/firebase";
+} from '@mui/material';
+import { createCollection, uploadImage } from '../../utils/firebase';
 
 const Container = styled(Box)({
-  padding: "20px",
-  background: "grey",
+  padding: '20px',
+  background: 'grey',
 });
 
-const Form = styled("form")({
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "flex-start",
-  justifyContent: "space-between",
-  border: "solid black 4px",
-  borderRadius: "4px",
-  padding: "40px",
+const Form = styled('form')({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+  justifyContent: 'space-between',
+  border: 'solid black 4px',
+  borderRadius: '4px',
+  padding: '40px',
 });
 
 const Input = styled(TextField)({
-  marginBottom: "24px",
+  marginBottom: '24px',
 });
 
 export default function AddRoom() {
-  const [name, setName] = useState("");
+  const [name, setName] = useState('');
   const [capacity, setCapacity] = useState(0);
   const [file, setFile] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await createCollection("rooms", {
+    const res = await createCollection('rooms', {
       name,
       capacity,
       image: await uploadImage(file),
     });
 
-    res ? console.log("room created") : console.log("failed to create room");
+    res ? console.log('room created') : console.log('failed to create room');
   };
 
   const onFileUpload = (e) => {
@@ -69,7 +69,7 @@ export default function AddRoom() {
     <Container>
       <Typography
         variant="h1"
-        sx={{ fontSize: "24px", textAlign: "left", padding: "20px" }}
+        sx={{ fontSize: '24px', textAlign: 'left', padding: '20px' }}
       >
         Add Room
       </Typography>
@@ -92,9 +92,9 @@ export default function AddRoom() {
         />
         <Input
           disabled
-          label={"photo"}
+          label={'photo'}
           fullWidth
-          value={!file ? "No File Selected" : file.name}
+          value={!file ? 'No File Selected' : file.name}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -102,7 +102,7 @@ export default function AddRoom() {
                   <Typography> Select File</Typography>
                   <input
                     accept="image/png, image/gif, image/jpeg"
-                    style={{ display: "none" }}
+                    style={{ display: 'none' }}
                     type="file"
                     onChange={(e) => onFileUpload(e)}
                   />
@@ -111,7 +111,7 @@ export default function AddRoom() {
             ),
           }}
         />
-        <Button type="submit" variant="outlined" sx={{ maxWidth: "240px" }}>
+        <Button type="submit" variant="outlined" sx={{ maxWidth: '240px' }}>
           Add Room
         </Button>
       </Form>

@@ -9,13 +9,13 @@ import {
   Toolbar,
   Tooltip,
   Typography,
-} from "@mui/material";
-import { signOut } from "firebase/auth";
-import React from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebase/client";
-import { logout } from "../../redux/authSlice";
+} from '@mui/material';
+import { signOut } from 'firebase/auth';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../../firebase/client';
+import { logout } from '../../redux/authSlice';
 
 export default function Appbar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -31,7 +31,7 @@ export default function Appbar() {
   };
   const logoutHandler = () => {
     signOut(auth);
-    dispatch(logout(navigate("/admin/login")));
+    dispatch(logout(navigate('/admin/login')));
   };
   return (
     <AppBar
@@ -41,7 +41,7 @@ export default function Appbar() {
       <Container maxWidth="xl">
         <Toolbar
           disableGutters
-          sx={{ display: "flex", justifyContent: "space-between" }}
+          sx={{ display: 'flex', justifyContent: 'space-between' }}
         >
           <Typography
             variant="h6"
@@ -50,12 +50,12 @@ export default function Appbar() {
             href="/"
             sx={{
               mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             LOGO
@@ -68,13 +68,13 @@ export default function Appbar() {
             href=""
             sx={{
               mr: 2,
-              display: { xs: "flex", md: "none" },
+              display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: "monospace",
+              fontFamily: 'monospace',
               fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
             }}
           >
             LOGO
@@ -87,17 +87,17 @@ export default function Appbar() {
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: "45px" }}
+              sx={{ mt: '45px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               keepMounted
               transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
+                vertical: 'top',
+                horizontal: 'right',
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
