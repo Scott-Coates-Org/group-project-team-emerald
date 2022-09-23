@@ -1,5 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
-import { getStorage, ref, uploadBytes } from '@firebase/storage';
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from '@firebase/storage';
 import { addDoc, collection, getFirestore, getDocs } from 'firebase/firestore';
 
 export async function uploadImage(file) {
@@ -10,6 +15,15 @@ export async function uploadImage(file) {
   const res = await uploadBytes(storageRef, file[0]);
 
   return res.metadata.name;
+}
+
+export function getImgDownloadUrl(id = '') {
+  if (!id.length) return;
+  const storage = getStorage();
+  const imageRef = ref(storage, 'images/' + id);
+  return getDownloadURL(imageRef).then(url => {
+    return url ? { imgId: id, imgUrl: url } : { imageId: '', imageUrl: '' };
+  });
 }
 
 export async function createCollection(folder, data) {
@@ -28,7 +42,7 @@ export async function getCollection(name) {
   const querySnapshot = await getDocs(collection(db, 'rooms'));
 
   const res = [];
-  querySnapshot.forEach((doc) => {
+  querySnapshot.forEach(doc => {
     res.push({
       id: doc.id,
       ...doc.data(),
