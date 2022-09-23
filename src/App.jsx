@@ -9,7 +9,7 @@ import { Admin as LayoutAdmin } from './layouts/Admin';
 import { User as LayoutUser } from './layouts/User';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
-const Products = lazy(() => import('./pages/product/product'));
+const AllProducts = lazy(() => import('./components/AllProduct/AllProduct'));
 const Login = lazy(() => import('./pages/login/Login'));
 const AdminHome = lazy(() => import('./pages/admin/index'));
 const Homepage = lazy(() => import('./pages/customer/homepage/homepage'));
@@ -40,7 +40,7 @@ function App() {
               path="/admin/products"
               element={
                 <RequireAuth>
-                  <Products />
+                  <AllProducts />
                 </RequireAuth>
               }
             />
@@ -64,7 +64,7 @@ function App() {
               path="/admin/rooms"
               element={
                 <RequireAuth>
-                  <Products />
+                  <AllProducts />
                 </RequireAuth>
               }
             />
