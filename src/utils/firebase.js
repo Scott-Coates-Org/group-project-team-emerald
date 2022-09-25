@@ -1,5 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
-import { getStorage, ref, uploadBytes } from '@firebase/storage';
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytes,
+} from '@firebase/storage';
 import { addDoc, collection, getFirestore, getDocs } from 'firebase/firestore';
 
 export async function uploadImage(file) {
@@ -14,7 +19,16 @@ export async function uploadImage(file) {
   return res.metadata.fullPath;
 }
 
-  return res.metadata.name;
+export async function getImageUrl(path) {
+  if (!path.length) return;
+  const storage = getStorage();
+  const imageRef = ref(storage, path);
+  try {
+    return await getDownloadURL(imageRef);
+  } catch (error) {
+    console.log('failed to get image url');
+    return '';
+  }
 }
 
 export async function createCollection(folder, data) {
