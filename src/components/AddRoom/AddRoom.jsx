@@ -7,7 +7,11 @@ import {
   Typography,
   TextField,
 } from '@mui/material';
-import { createCollection, uploadImage } from '../../utils/firebase';
+import {
+  createCollection,
+  getImageUrl,
+  uploadImage,
+} from '../../utils/firebase';
 
 const Container = styled(Box)({
   padding: '20px',
@@ -36,10 +40,13 @@ export default function AddRoom() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const imgPath = await uploadImage(file);
+    const imgUrl = await getImageUrl(imgPath);
+
     const res = await createCollection('rooms', {
       name,
       capacity,
-      image: await uploadImage(file),
+      imgUrl,
     });
 
     res ? console.log('room created') : console.log('failed to create room');
@@ -104,7 +111,7 @@ export default function AddRoom() {
                     accept="image/png, image/gif, image/jpeg"
                     style={{ display: 'none' }}
                     type="file"
-                    onChange={(e) => onFileUpload(e)}
+                    onChange={e => onFileUpload(e)}
                   />
                 </Button>
               </InputAdornment>

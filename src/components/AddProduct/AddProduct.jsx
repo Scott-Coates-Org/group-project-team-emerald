@@ -11,6 +11,7 @@ import SelectField from '../common/Select';
 import {
   createCollection,
   getCollection,
+  getImageUrl,
   uploadImage,
 } from '../../utils/firebase';
 import { useEffect } from 'react';
@@ -62,6 +63,9 @@ export default function AddProduct() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const imgPath = await uploadImage(photo);
+    const imgUrl = await getImageUrl(imgPath);
+
     const res = await createCollection('products', {
       name,
       description,
@@ -69,7 +73,7 @@ export default function AddProduct() {
       type,
       room,
       duration,
-      photo: await uploadImage(photo),
+      imgUrl,
     });
 
     res ? console.log('Room Created') : console.log('Fail to Create Room');
