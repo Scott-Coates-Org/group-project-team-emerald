@@ -6,6 +6,8 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useEffect, useState } from 'react';
+import { getCollection } from '../../utils/firebase';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -27,44 +29,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function createData(name, img, price, type) {
-  return { name, img, price, type };
-}
-
-const rows = [
-  createData(
-    'Product name',
-    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    20.0,
-    'pass'
-  ),
-  createData(
-    'Product name',
-    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    20.0,
-    'pass'
-  ),
-  createData(
-    'Product name',
-    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    20.0,
-    'pass'
-  ),
-  createData(
-    'Product name',
-    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    20.0,
-    'pass'
-  ),
-  createData(
-    'Product name',
-    'https://images.pexels.com/photos/3801990/pexels-photo-3801990.jpeg?auto=compress&cs=tinysrgb&w=1600',
-    20.0,
-    'pass'
-  ),
-];
-
 export default function AllProduct() {
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    async function fetchData() {
+      const products = await getCollection('products');
+      setRows(products);
+    }
+
+    fetchData();
+  }, []);
+
+  if (!rows.length) return <div>Loading...</div>;
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -76,8 +53,8 @@ export default function AllProduct() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
-            <StyledTableRow key={row.name}>
+          {rows.map(({ imgUrl, price, type, name }) => (
+            <StyledTableRow key={name}>
               <StyledTableCell
                 component="th"
                 scope="row"
@@ -89,14 +66,15 @@ export default function AllProduct() {
                 }}
               >
                 <img
-                  src={row.img}
-                  alt="product "
+                  referrerPolicy="no-referrer"
+                  src={imgUrl}
+                  alt={'product_img'}
                   style={{ width: '60px', height: '50px', objectFit: 'cover' }}
                 />
-                {row.name}
+                {name}
               </StyledTableCell>
-              <StyledTableCell align="right">{row.price}</StyledTableCell>
-              <StyledTableCell align="right">{row.type}</StyledTableCell>
+              <StyledTableCell align="right">{price}</StyledTableCell>
+              <StyledTableCell align="right">{type}</StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
