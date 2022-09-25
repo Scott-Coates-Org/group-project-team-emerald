@@ -24,11 +24,12 @@ export async function createCollection(folder, data) {
 }
 
 export async function getCollection(name) {
+  if (!name.length) return;
   const db = getFirestore();
-  const querySnapshot = await getDocs(collection(db, 'rooms'));
+  const querySnapshot = await getDocs(collection(db, name));
 
   const res = [];
-  querySnapshot.forEach((doc) => {
+  querySnapshot.forEach(doc => {
     res.push({
       id: doc.id,
       ...doc.data(),
