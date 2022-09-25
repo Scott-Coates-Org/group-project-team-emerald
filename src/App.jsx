@@ -10,6 +10,7 @@ import { User as LayoutUser } from './layouts/User';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 const AllProducts = lazy(() => import('./components/AllProduct/AllProduct'));
+const AllRooms = lazy(() => import('./components/AllRoom/AllRoom'));
 const Login = lazy(() => import('./pages/login/Login'));
 const AdminHome = lazy(() => import('./pages/admin/index'));
 const Homepage = lazy(() => import('./pages/customer/homepage/homepage'));
@@ -64,7 +65,7 @@ function App() {
               path="/admin/rooms"
               element={
                 <RequireAuth>
-                  <AllProducts />
+                  <AllRooms />
                 </RequireAuth>
               }
             />
