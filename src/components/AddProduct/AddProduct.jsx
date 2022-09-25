@@ -147,9 +147,9 @@ export default function AddProduct() {
           name="Product Type"
           value={type}
           options={[
-            { name: 'bus', value: 'yellow' },
-            { name: 'bus', value: 'yellow' },
-            { name: 'bus', value: 'yellow' },
+            { name: 'Pass', value: 'Pass' },
+            { name: 'Add On', value: 'Add On' },
+            { name: 'Product', value: 'Product' },
           ]}
           onChange={handleType}
         />
