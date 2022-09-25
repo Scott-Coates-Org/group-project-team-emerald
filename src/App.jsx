@@ -74,7 +74,14 @@ function App() {
           <Route element={<LayoutUser />}>
             <Route path="/" element={<Homepage />} />
             <Route path="/checkout" element={<Checkout />} />
+
+
+
+
           </Route>
+
+
+
 
           <Route path="*" element={<PageNotFound />} />
         </Routes>
