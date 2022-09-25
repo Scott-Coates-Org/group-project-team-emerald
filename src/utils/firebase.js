@@ -5,9 +5,14 @@ import { addDoc, collection, getFirestore, getDocs } from 'firebase/firestore';
 export async function uploadImage(file) {
   if (!file) return '';
   const id = uuidv4();
+  const metadata = {
+    contentType: file.type,
+  };
   const storage = getStorage();
-  const storageRef = ref(storage, 'images/' + id);
-  const res = await uploadBytes(storageRef, file[0]);
+  const storageRef = ref(storage, 'images/' + id, metadata);
+  const res = await uploadBytes(storageRef, file);
+  return res.metadata.fullPath;
+}
 
   return res.metadata.name;
 }
