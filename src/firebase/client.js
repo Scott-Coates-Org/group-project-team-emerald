@@ -5,7 +5,7 @@ import '@firebase/auth';
 import '@firebase/storage';
 import 'firebase/firestore';
 
-console.log(process.env.REACT_APP_FIREBASE_API_KEY);
+
 const firebaseKey = process.env.REACT_APP_FIREBASE_API_KEY;
 const firebaseProjectId = process.env.REACT_APP_FIREBASE_PROJECT_ID;
 const firebaseAuthDomain = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN;

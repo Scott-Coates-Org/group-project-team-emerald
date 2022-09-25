@@ -12,7 +12,7 @@ export default function Checkout() {
   );
 }
 
-
+//to be removed
 const details = {
   title: 'Sign Waiver',
   content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit.Laboriosam,
