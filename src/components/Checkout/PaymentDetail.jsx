@@ -1,140 +1,50 @@
-import { useState } from 'react';
-import styled from '@emotion/styled';
-import { Box, Button, Typography, TextField } from '@mui/material';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import SelectField from '../common/Select';
-import countries from '../../utils/country.json';
+import { useState, useEffect } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
 
-const Container = styled(Box)({
-  padding: '20px',
-  background: 'grey',
-});
+import CheckoutForm from './CheckoutForm';
+import { Box } from '@mui/material';
 
-const Form = styled('form')({
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'flex-start',
-  justifyContent: 'space-between',
-  border: 'solid black 4px',
-  borderRadius: '4px',
-  padding: '40px',
-});
+// Make sure to call loadStripe outside of a component’s render to avoid
+// recreating the Stripe object on every render.
+// This is a public sample test API key.
+// Don’t submit any personally identifiable information in requests made with this key.
+// Sign in to see your own test API key embedded in code samples.
+const stripePromise = loadStripe('{{CLIENT KEY}}');
 
-const Input = styled(TextField)({
-  marginBottom: '24px',
-});
+export default function App() {
+  const [clientSecret, setClientSecret] = useState('');
 
-export default function PaymentDetail() {
-  const [ccNumber, setCC] = useState('');
-  const [expiration, setExpiration] = useState('');
-  const [cvc, setCVC] = useState('');
-  const [country, setCountry] = useState('');
+  useEffect(() => {
+    // Create PaymentIntent as soon as the page loads
+    fetch('http://localhost:4242/create-payment-intent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: [{ id: 'xl-tshirt' }] }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        setClientSecret(data.clientSecret);
+      });
+  }, []);
 
-  const handleCreditCard = e => {
-    setCC(e.target.value);
+  const appearance = {
+    theme: 'stripe',
   };
-
-  const handleExpiration = e => {
-    setExpiration(e);
-  };
-
-  const handleCVC = e => {
-    setCVC(e.target.value);
-  };
-
-  const handleCountry = e => {
-    setCountry(e.target.value);
-  };
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    console.log({
-      ccNumber,
-      expiration,
-      cvc,
-      country,
-    });
+  const options = {
+    clientSecret,
+    appearance,
   };
 
   return (
-    <Container>
-      <Typography
-        variant="h1"
-        sx={{ fontSize: '24px', textAlign: 'left', padding: '20px' }}
-      >
-        Enter contact details
-      </Typography>
-      <Form onSubmit={handleSubmit}>
-        <Input
-          name="Credit Card Number"
-          placeholder="1234 1234 1234 1234"
-          fullWidth
-          label="Card Number"
-          type="number"
-          value={ccNumber}
-          onChange={handleCreditCard}
-        />
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-evenly',
-          }}
-        >
-          <LocalizationProvider dateAdapter={AdapterMoment}>
-            <DatePicker
-              name="Expiry"
-              label="Expiry"
-              value={expiration}
-              onChange={handleExpiration}
-              renderInput={params => <TextField {...params} />}
-            />
-          </LocalizationProvider>
-          <Input
-            name="CVC"
-            fullWidth
-            label="CVC"
-            type="number"
-            value={cvc}
-            onChange={handleCVC}
-            sx={{ marginLeft: '8px' }}
-          />
-        </Box>
-        <SelectField
-          id="Country"
-          name="country"
-          value={country}
-          options={countries}
-          onChange={handleCountry}
-        />
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-evenly',
-          }}
-        >
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{ width: '100%', marginBottom: '12px' }}
-            onClick={handleSubmit}
-          >
-            Continue
-          </Button>
-          <Button
-            variant="outlined"
-            sx={{ width: '100%' }}
-            onClick={() => console.log('handleGoBack')}
-          >
-            Back
-          </Button>
-        </Box>
-      </Form>
-    </Container>
+    <Box
+      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+    >
+      {clientSecret && (
+        <Elements options={options} stripe={stripePromise}>
+          <CheckoutForm />
+        </Elements>
+      )}
+    </Box>
   );
 }
