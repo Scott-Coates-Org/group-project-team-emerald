@@ -32,7 +32,7 @@ const listItem = [
   {
     name: 'Rooms',
     subLink: {
-      sub: { name: 'All Room', linkTo: '/admin/products' },
+      sub: { name: 'All Room', linkTo: '/admin/rooms' },
       sub1: { name: 'Add Room', linkTo: '/admin/rooms/add' },
     },
   },
