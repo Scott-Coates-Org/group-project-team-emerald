@@ -17,6 +17,7 @@ const Homepage = lazy(() => import('./pages/customer/homepage/homepage'));
 const Checkout = lazy(() => import('./pages/customer/checkout/checkout'));
 const AddRoom = lazy(() => import('./components/AddRoom/AddRoom'));
 const AddProduct = lazy(() => import('./components/AddProduct/AddProduct'));
+const DailyCapacity = lazy(() => import('./components/DailyCapacity/index'));
 
 function App() {
   const { user } = useAuth();
@@ -66,6 +67,14 @@ function App() {
               element={
                 <RequireAuth>
                   <AllRooms />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/admin/dailycapacity"
+              element={
+                <RequireAuth>
+                  <DailyCapacity />
                 </RequireAuth>
               }
             />
