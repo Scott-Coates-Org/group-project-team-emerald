@@ -1,20 +1,12 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
-import { Box, Button, Typography, TextField } from '@mui/material';
-
-const Container = styled(Box)({
-  padding: '20px',
-  background: 'grey',
-});
+import { Typography, TextField } from '@mui/material';
 
 const Form = styled('form')({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
   justifyContent: 'space-between',
-  border: 'solid black 4px',
-  borderRadius: '4px',
-  padding: '40px',
 });
 
 const Input = styled(TextField)({
@@ -40,22 +32,17 @@ export default function ContactDetail() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-
-    console.log({
-      name,
-      email,
-      address,
-    });
   };
 
   return (
-    <Container>
+    <>
       <Typography
         variant="h1"
         sx={{ fontSize: '24px', textAlign: 'left', padding: '20px' }}
       >
         Enter contact details
       </Typography>
+
       <Form onSubmit={handleSubmit}>
         <Input
           name="Full Name"
@@ -81,30 +68,7 @@ export default function ContactDetail() {
           value={address}
           onChange={handleAddress}
         />
-        <Box
-          sx={{
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'space-evenly',
-          }}
-        >
-          <Button
-            variant="outlined"
-            sx={{ width: '100%', marginRight: '12px' }}
-            onClick={() => console.log('handleGoBack')}
-          >
-            Back
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{ width: '100%', marginLeft: '12px' }}
-            onClick={handleSubmit}
-          >
-            Continue
-          </Button>
-        </Box>
       </Form>
-    </Container>
+    </>
   );
 }

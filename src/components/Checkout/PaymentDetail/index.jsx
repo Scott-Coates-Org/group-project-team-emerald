@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
-import CheckoutForm from './CheckoutForm';
+import { CheckoutForm } from './CheckoutForm';
 import { Box } from '@mui/material';
 
 // Make sure to call loadStripe outside of a component’s render to avoid
@@ -12,7 +12,7 @@ import { Box } from '@mui/material';
 // Sign in to see your own test API key embedded in code samples.
 const stripePromise = loadStripe('{{CLIENT KEY}}');
 
-export default function App() {
+export default function PaymentDetail() {
   const [clientSecret, setClientSecret] = useState('');
 
   useEffect(() => {
