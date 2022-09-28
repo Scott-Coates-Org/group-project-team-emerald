@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "ES6",
     "module": "CommonJS",
     "jsx": "react"
   },
+  "include": ["src"],
   "exclude": [
     ".git",
+    "build",
     "public",
     "node_modules",
     "**/node_modules/*"

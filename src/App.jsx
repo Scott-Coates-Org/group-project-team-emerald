@@ -13,8 +13,8 @@ const AllProducts = lazy(() => import('./components/AllProduct/AllProduct'));
 const AllRooms = lazy(() => import('./components/AllRoom/AllRoom'));
 const Login = lazy(() => import('./pages/login/Login'));
 const AdminHome = lazy(() => import('./pages/admin/index'));
-const Homepage = lazy(() => import('./pages/customer/homepage/homepage'));
-const Checkout = lazy(() => import('./pages/customer/checkout/checkout'));
+const Home = lazy(() => import('./pages/customer/Home'));
+const Checkout = lazy(() => import('./pages/customer/Checkout'));
 const AddRoom = lazy(() => import('./components/AddRoom/AddRoom'));
 const AddProduct = lazy(() => import('./components/AddProduct/AddProduct'));
 const DailyCapacity = lazy(() => import('./components/DailyCapacity/index'));
@@ -82,7 +82,7 @@ function App() {
 
           {/* Customer Routes */}
           <Route element={<LayoutUser />}>
-            <Route path="/" element={<Homepage />} />
+            <Route path="/" element={<Home />} />
             <Route path="/checkout" element={<Checkout />} />
           </Route>
 

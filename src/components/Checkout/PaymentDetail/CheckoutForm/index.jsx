@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
+import { Button } from '@mui/material';
 import {
   PaymentElement,
   useStripe,
   useElements,
 } from '@stripe/react-stripe-js';
-import { Button } from '@mui/material';
 import './CheckoutForm.css';
 
-export default function CheckoutForm() {
+export const CheckoutForm = () => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -80,17 +80,18 @@ export default function CheckoutForm() {
 
   const handleBack = e => {
     e.preventDefault();
-    console.log('Nav Back');
   };
 
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <PaymentElement id="payment-element" />
+
       <button disabled={isLoading || !stripe || !elements} id="submit">
         <span id="button-text">
           {isLoading ? <div className="spinner" id="spinner" /> : 'Pay now'}
         </span>
       </button>
+
       <Button
         variant="outlined"
         onClick={handleBack}
@@ -98,7 +99,8 @@ export default function CheckoutForm() {
       >
         Back
       </Button>
+
       {message && <div id="payment-message">{message}</div>}
     </form>
   );
-}
+};
