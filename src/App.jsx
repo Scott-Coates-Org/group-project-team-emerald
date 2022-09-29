@@ -7,6 +7,7 @@ import { PageLoader } from './components/PageLoader';
 import { Guest as LayoutGuest } from './layouts/Guest';
 import { Admin as LayoutAdmin } from './layouts/Admin';
 import { User as LayoutUser } from './layouts/User';
+import Bookings from 'pages/admin/bookings';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 const AllProducts = lazy(() => import('./components/AllProduct/AllProduct'));
@@ -67,6 +68,14 @@ function App() {
               element={
                 <RequireAuth>
                   <AllRooms />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/admin/bookings"
+              element={
+                <RequireAuth>
+                  <Bookings />
                 </RequireAuth>
               }
             />

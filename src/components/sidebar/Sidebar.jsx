@@ -25,7 +25,7 @@ const listItem = [
   {
     name: 'Bookings',
     subLink: {
-      sub: { name: 'All Bookings', linkTo: '/admin/products' },
+      sub: { name: 'All Bookings', linkTo: '/admin/bookings' },
       sub1: { name: 'Daily Capacity', linkTo: 'admin/dailycapacity' },
     },
   },
