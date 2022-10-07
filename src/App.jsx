@@ -6,8 +6,8 @@ import RequireAuth from './components/RequireAuth';
 import { PageLoader } from './components/PageLoader';
 import { Guest as LayoutGuest } from './layouts/Guest';
 import { Admin as LayoutAdmin } from './layouts/Admin';
+import { bookings } from './data';
 import { User as LayoutUser } from './layouts/User';
-import Bookings from 'pages/admin/bookings';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
 const AllProducts = lazy(() => import('./components/AllProduct/AllProduct'));
@@ -18,8 +18,9 @@ const Home = lazy(() => import('./pages/customer/Home'));
 const Checkout = lazy(() => import('./pages/customer/Checkout'));
 const AddRoom = lazy(() => import('./components/AddRoom/AddRoom'));
 const AddProduct = lazy(() => import('./components/AddProduct/AddProduct'));
-const DailyCapacity = lazy(() => import('./components/DailyCapacity/index'));
-
+const DailyCapacity = lazy(() => import('./pages/admin/dailyCapacity'));
+const Bookings = lazy(() => import('./pages/admin/bookings'));
+const Booking = lazy(() => import('./components/bookings/bookingDetails'));
 function App() {
   const { user } = useAuth();
   const Layout = user ? LayoutAdmin : LayoutGuest;
@@ -75,10 +76,20 @@ function App() {
               path="/admin/bookings"
               element={
                 <RequireAuth>
-                  <Bookings />
+                  <Bookings bookings={bookings} />
                 </RequireAuth>
               }
             />
+
+            <Route
+              path="/admin/bookings/:confirmationId"
+              element={
+                <RequireAuth>
+                  <Booking />
+                </RequireAuth>
+              }
+            />
+
             <Route
               path="/admin/dailycapacity"
               element={

@@ -43,13 +43,13 @@ const StyledRoomSelectorItem = styled('div')(
   })
 );
 
-export const RoomSelectorItem = ({ color, text: resourceTitle }) => {
-  const text = resourceTitle || 'All Rooms';
+export const RoomSelectorItem = ({ color, text, id: resourceTitle }) => {
+  const id = resourceTitle || 'All Rooms';
 
   return (
     <StyledRoomSelectorItem className={classes.roomSelectorItem} color={color}>
       <span className={classes.bullet} />
-      <span className={classes.roomText}>{text}</span>
+      <span className={classes.roomText}>{id}</span>
     </StyledRoomSelectorItem>
   );
 };
@@ -65,7 +65,11 @@ export const RoomSelector = ({ roomChange, room }) => {
           roomChange(e.target.value);
         }}
         renderValue={() => (
-          <RoomSelectorItem text={currentRoom.text} color={currentRoom.color} />
+          <RoomSelectorItem
+            text={currentRoom.text}
+            color={currentRoom.color}
+            id={currentRoom.id}
+          />
         )}
       >
         <MenuItem value={0}>
@@ -73,7 +77,7 @@ export const RoomSelector = ({ roomChange, room }) => {
         </MenuItem>
         {rooms.map(({ id, color, text }) => (
           <MenuItem value={id} key={id.toString()}>
-            <RoomSelectorItem color={color} text={text} />
+            <RoomSelectorItem color={color} text={text} id={id} />
           </MenuItem>
         ))}
       </Select>
