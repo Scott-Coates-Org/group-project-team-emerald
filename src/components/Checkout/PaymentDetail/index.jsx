@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
-
+import { Cart } from '../Cart';
 import { CheckoutForm } from './CheckoutForm';
 import { Box } from '@mui/material';
 
@@ -10,6 +10,7 @@ import { Box } from '@mui/material';
 // This is a public sample test API key.
 // Don’t submit any personally identifiable information in requests made with this key.
 // Sign in to see your own test API key embedded in code samples.
+
 const stripePromise = loadStripe(
   'pk_test_51JJJyJPnV8MRFpwOkRHMOPch9BmKqeU5gtHwyXIrmd8f40w6lXPsPhscIBdrBlYU5fdz3mk8GKfSwP4STOp0RziO00nff73WAP'
 );
@@ -41,13 +42,18 @@ export default function PaymentDetail() {
 
   return (
     <Box
-      sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+      sx={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
     >
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
       )}
+      <Cart />
     </Box>
   );
 }
