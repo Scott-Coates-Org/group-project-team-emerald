@@ -16,7 +16,7 @@ export default function Checkout() {
 
   return (
     <>
-      <Box sx={{ margin: '0 auto', width: '50%' }}>
+      <Box sx={{ margin: '0 auto', width: '80%' }}>
         <StepCounter />
 
         <Suspense fallback={<PageLoader />}>
