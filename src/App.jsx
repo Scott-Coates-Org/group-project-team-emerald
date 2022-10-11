@@ -6,7 +6,6 @@ import RequireAuth from './components/RequireAuth';
 import { PageLoader } from './components/PageLoader';
 import { Guest as LayoutGuest } from './layouts/Guest';
 import { Admin as LayoutAdmin } from './layouts/Admin';
-import { bookings } from './data';
 import { User as LayoutUser } from './layouts/User';
 
 const PageNotFound = lazy(() => import('./pages/PageNotFound'));
@@ -77,7 +76,7 @@ function App() {
               path="/admin/bookings"
               element={
                 <RequireAuth>
-                  <Bookings bookings={bookings} />
+                  <Bookings />
                 </RequireAuth>
               }
             />
