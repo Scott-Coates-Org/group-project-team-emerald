@@ -10,9 +10,7 @@ const participationInActivity = 'VIP Points';
 export default function Waiver() {
   return (
     <>
-      <Typography variant="h3">
-        Sign Waiver
-      </Typography>
+      <Typography variant="h3">Sign Waiver</Typography>
 
       <Typography variant="p" component="div" sx={{ pt: '10px' }}>
         This agreement releases {organization} from all liability relating to
