@@ -1,0 +1,62 @@
+.descContainer {
+  min-height: 100px;
+}
+.timeBtn {
+  margin: 5px;
+  padding: 8px;
+  width: 80px;
+  font-size: 14px;
+}
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1em;
+}
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #969696;
+  border-radius: 4px;
+  height: 30px;
+}
+.iconCont {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #969696;
+}
+.iconCont1 {
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid #969696;
+}
+.icon {
+  font-size: 1.4em;
+}
+.count {
+  font-size: 1.2em;
+  margin: 0 0.5em;
+}
+/* Accordion styling */
+.accordion {
+  padding: 0 5px;
+}
+.summary {
+  min-height: 100px;
+}
+.prodName {
+  display: flex;
+  align-items: center;
+  margin: 0 1em;
+}
+.prodImg {
+  width: 30%;
+  object-fit: cover;
+}
