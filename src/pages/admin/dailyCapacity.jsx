@@ -17,7 +17,6 @@ import {
   Resources,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-import { appointments } from '../../components/DailyCapacity/data';
 import { AppointmentContent } from 'components/DailyCapacity/appointmentContent';
 import {
   StyledButtonGroup,
@@ -25,9 +24,12 @@ import {
   StyledToolbarFlexibleSpace,
 } from 'components/DailyCapacity/styles/selector';
 
+import { appointments } from 'components/DailyCapacity/data';
+
 const LOCATIONS = ['Room 1', 'Room 2', 'Room 3'];
 const LOCATIONS_SHORT = [1, 2, 3];
 const CAPACITY = ['holds 70', 'holds 80', 'holds 100'];
+
 const resources = [
   {
     fieldName: 'location',
@@ -100,23 +102,26 @@ const FlexibleSpace = ({ props }) => (
 const SCHEDULER_STATE_CHANGE_ACTION = 'SCHEDULER_STATE_CHANGE';
 
 const Index2 = ({ data, currentDate, onCurrentDateChange }) => (
-  <Paper>
-    <Scheduler data={data} height={660}>
-      <ViewState
-        currentDate={currentDate}
-        onCurrentDateChange={onCurrentDateChange}
-        viewName="day"
-      />
-      <DayView startDayHour={9} endDayHour={19} />
+  <>
+    <h2 style={{ margin: '1em ' }}>Daily Capacity</h2>
+    <Paper>
+      <Scheduler data={data} height={660}>
+        <ViewState
+          currentDate={currentDate}
+          onCurrentDateChange={onCurrentDateChange}
+          viewName="day"
+        />
+        <DayView startDayHour={9} endDayHour={17} />
 
-      <Appointments appointmentContentComponent={AppointmentContent} />
-      <Resources data={resources} />
+        <Appointments appointmentContentComponent={AppointmentContent} />
+        <Resources data={resources} />
 
-      <Toolbar flexibleSpaceComponent={FlexibleSpace} />
-      <DateNavigator />
-      <ViewSwitcher />
-    </Scheduler>
-  </Paper>
+        <Toolbar flexibleSpaceComponent={FlexibleSpace} />
+        <DateNavigator />
+        <ViewSwitcher />
+      </Scheduler>
+    </Paper>
+  </>
 );
 
 const schedulerInitialState = {
@@ -127,7 +132,7 @@ const schedulerInitialState = {
   locations: LOCATIONS,
 };
 
-const schedulerReducer = (state = schedulerInitialState, action) => {
+const SchedulerReducer = (state = schedulerInitialState, action) => {
   if (action.type === SCHEDULER_STATE_CHANGE_ACTION) {
     return {
       ...state,
@@ -182,7 +187,7 @@ const ReduxLocationSelector = connect(
 )(LocationSelector);
 
 const store = createStore(
-  schedulerReducer,
+  SchedulerReducer,
 
   typeof window !== 'undefined'
     ? window.__REDUX_DEVTOOLS_EXTENSION__ &&

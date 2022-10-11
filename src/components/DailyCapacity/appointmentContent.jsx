@@ -27,29 +27,40 @@ const StyledAppointmentsAppointmentContent = styled(
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
   },
+
   [`& .${classes.container}`]: {
     width: '100%',
   },
 }));
 
-export const AppointmentContent = ({ data, formatDate, ...restProps }) => (
-  <StyledAppointmentsAppointmentContent
-    {...restProps}
-    formatDate={formatDate}
-    data={data}
-  >
-    <div className={classes.container}>
-      <div className={classes.title}>{data.title}</div>
-      <div className={classes.text}>{data.availability} avail</div>
-      <div className={classes.textContainer}>
-        <div className={classes.time}>
-          {formatDate(data.startDate, { hour: 'numeric', minute: 'numeric' })}
+export const AppointmentContent = ({ data, formatDate, ...restProps }) => {
+  return (
+    <StyledAppointmentsAppointmentContent
+      {...restProps}
+      formatDate={formatDate}
+      data={data}
+    >
+      <div className={classes.container}>
+        <div className={classes.title}>{data.title}</div>
+
+        <div className={classes.text}>{data.availability} avail</div>
+        <div className={classes.textContainer}>
+          <div className={classes.time}>
+            {formatDate(data.startDate, { hour: 'numeric', minute: 'numeric' })}
+          </div>
+          <div className={classes.time}>{' - '}</div>
+          <div className={classes.time}>
+            {formatDate(data.endDate, { hour: 'numeric', minute: 'numeric' })}
+          </div>
+          <div className={classes.text}>{data.location}</div>
         </div>
-        <div className={classes.time}>{' - '}</div>
-        <div className={classes.time}>
-          {formatDate(data.endDate, { hour: 'numeric', minute: 'numeric' })}
-        </div>
+        <span
+          style={{ fontSize: '25px', color: '#efefef', marginRight: '10px' }}
+        >
+          {`${(data.availability * 100) / data.holds}`}%
+        </span>
+        <span>booked</span>
       </div>
-    </div>
-  </StyledAppointmentsAppointmentContent>
-);
+    </StyledAppointmentsAppointmentContent>
+  );
+};
