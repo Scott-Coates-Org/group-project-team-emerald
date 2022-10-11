@@ -1,14 +1,16 @@
 import { Box, Card, Typography } from '@mui/material';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import styled from '@emotion/styled';
-import theme from 'theme';
+import { useTheme } from '@mui/material/styles';
 
 export function Cart() {
+  const theme = useTheme();
+
   const Row = styled(Box)({
     display: 'flex',
     justifyContent: 'space-between',
   });
-  const date = 'Sept-20-22';
+  const date = 'October 12, 2022';
 
   const product = {
     name: 'Product Name',
@@ -24,10 +26,9 @@ export function Cart() {
   };
 
   const total = [
-    { label: 'subTotal', calc: (...arg) => 'test' },
-    { label: 'Transaction Fee', calc: (...arg) => 'test' },
-    { label: 'Tax', calc: (...arg) => 'test' },
-    { label: 'Total(Inc. Tax)', calc: (...arg) => 'test' },
+    { label: 'Subtotal', calc: (...arg) => '$90.00' },
+    { label: 'Transaction Fee', calc: (...arg) => '$7.00' },
+    { label: 'Tax', calc: (...arg) => '$4.85' },
   ];
 
   const list = [product, addOn];
@@ -35,44 +36,48 @@ export function Cart() {
   return (
     <Card
       sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'flex-start',
-        width: theme.spacing(40),
         borderRadius: theme.spacing(1),
-        padding: theme.spacing(5),
-        margin: theme.spacing(5),
+        padding: theme.spacing(4),
       }}
     >
-      <Box key="header" fullWidth>
-        <Typography>Your Cart</Typography>
-        <Box style={{ display: 'flex', justifyContent: 'center' }}>
+      <Box>
+        <Typography variant="bolder">Your Cart</Typography>
+
+        <Box sx={{ pt: theme.spacing(1), display: 'flex' }}>
           <CalendarMonthIcon />
-          <span>{date}</span>
+          <Typography variant="light">{date}</Typography>
         </Box>
       </Box>
-      <Box style={{ width: '100%' }}>
+
+      <Box sx={{ pt: '1em' }} style={{ width: '100%' }}>
         {list.map(({ name, unit, price }) => {
           return (
             <Row key={name}>
-              <Typography>
+              <Typography variant="light">
                 {unit} X {name}
               </Typography>
-              <Typography>{price}</Typography>
+              <Typography variant="light">${unit * price}</Typography>
             </Row>
           );
         })}
       </Box>
-      <Box fullWidth sx={{ display: 'column', width: '100%' }}>
-        <Typography>Total</Typography>
+
+      <Box sx={{ pt: '2em', display: 'column', width: '100%' }}>
+        <Typography variant="bolder">Total</Typography>
+
         {total.map(({ label, calc }) => {
           return (
             <Row key={label}>
-              <Typography>{label}</Typography>
-              <Typography>{calc()}</Typography>
+              <Typography variant="light">{label}</Typography>
+              <Typography variant="light">{calc()}</Typography>
             </Row>
           );
         })}
+        
+        <Row>
+          <Typography variant="bolder">Total(Inc. Tax)</Typography>
+          <Typography variant="bolder">$101.85</Typography>
+        </Row>
       </Box>
     </Card>
   );

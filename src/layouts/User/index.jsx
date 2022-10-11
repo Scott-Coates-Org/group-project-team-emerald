@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom';
-import { Box } from '@mui/system';
-import TopBar from '../../components/appbar/Appbar';
+import TopBar from 'components/appbar/Appbar';
+import { Container } from '@mui/material';
 
 const User = () => {
   return (
-    <div style={{ display: 'flex' }}>
-      <TopBar />
+    <>
+      <Container sx={{ marginTop: '5em' }}>
+        <TopBar />
 
-      <Box component="main" sx={{ flexGrow: 1, p: 3, marginTop: '4em' }}>
         <Outlet />
-      </Box>
-    </div>
+      </Container>
+    </>
   );
 };
 

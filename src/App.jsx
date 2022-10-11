@@ -21,6 +21,7 @@ const AddProduct = lazy(() => import('./components/AddProduct/AddProduct'));
 const DailyCapacity = lazy(() => import('./pages/admin/dailyCapacity'));
 const Bookings = lazy(() => import('./pages/admin/bookings'));
 const Booking = lazy(() => import('./components/bookings/bookingDetails'));
+
 function App() {
   const { user } = useAuth();
   const Layout = user ? LayoutAdmin : LayoutGuest;
