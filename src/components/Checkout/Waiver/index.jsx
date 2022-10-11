@@ -2,41 +2,47 @@ import { Checkbox, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { SignatureBox } from './SignatureBox';
 
-const details = {
-  title: 'Sign Waiver',
-  content: `Lorem ipsum dolor sit amet consectetur, adipisicing elit.Laboriosam,
-    aut.Sed libero perferendis natus doloremque tenetur totam assumenda consequatur
-    consectetur odio, ducimus labore non rerum quia magnam est.Explicabo sint asperiores
-    voluptatum.Perferendis molestias necessitatibus deleniti nam.Quo, magni deserunt soluta
-    aspernatur quos praesentium laudantium maiores ex eveniet illo quasi?,`,
-  toCheck: 'I have read and agree to the terms and conditions',
-  extraDetails:
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam',
-};
+const organization = 'Trampoline Park';
+const typeOfActivity = 'Trampoline-Jumping';
+const listRisks = 'Running, Jumping, Sliding, etc';
+const participationInActivity = 'VIP Points';
 
 export default function Waiver() {
-  const { content, extraDetails, toCheck, title } = details;
-
   return (
     <>
-      <Typography variant="h3" component="div" sx={{ margin: ' 1.5rem 0' }}>
-        {title}
+      <Typography variant="h3">Sign Waiver</Typography>
+
+      <Typography variant="p" component="div" sx={{ pt: '10px' }}>
+        This agreement releases {organization} from all liability relating to
+        injuries that may occur during any activity, on premises. By signing
+        this agreement, I agree to hold {organization} entirely free from any
+        liability, including financial responsibility for injuries incurred,
+        regardless of whether injuries are caused by negligence.
       </Typography>
 
-      <Typography variant="p" component="div">
-        {content}
+      <Typography variant="p" component="div" sx={{ pt: '10px' }}>
+        I also acknowledge the risks involved in {typeOfActivity}. These include
+        but are not limited to {listRisks}. I swear that I am participating
+        voluntarily, and that all risks have been made clear to me.
+        Additionally, I do not have any conditions that will increase my
+        likelihood of experiencing injuries while engaging in this activity.
       </Typography>
 
-      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+      <Typography variant="p" component="div" sx={{ pt: '10px' }}>
+        By signing below I forfeit all right to bring a suit against{' '}
+        {organization} for any reason. In return, I will receive{' '}
+        {participationInActivity}. I will also make every effort to obey safety
+        precautions as listed in writing and as explained to me verbally. I will
+        ask for clarification when needed.
+      </Typography>
+
+      <Box sx={{ display: 'flex', alignItems: 'center', pt: '10px' }}>
         <Checkbox />
+
         <Typography variant="p" component="div">
-          {toCheck}
+          I have read and agree to the terms and conditions
         </Typography>
       </Box>
-
-      <Typography variant="p" component="div" sx={{ marginBottom: '1.5rem' }}>
-        {extraDetails}
-      </Typography>
 
       <SignatureBox />
     </>

@@ -14,6 +14,17 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  typography: {
+    light: {
+      fontWeight: 300,
+    },
+    bold: {
+      fontWeight: 500,
+    },
+    bolder: {
+      fontWeight: 700,
+    },
+  },
 });
 
 export default theme;
