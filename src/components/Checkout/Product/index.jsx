@@ -1,28 +1,15 @@
-import { Box, Typography } from '@mui/material';
-import ProdDesc from './prodDesc';
+import { Typography } from '@mui/material';
 import ProdSelector from './prodSelector';
 
 export default function Product() {
-  const products = [];
+  const products = [1, 2, 3];
 
   return (
     <>
       <Typography variant="bolder">Select Products</Typography>
 
-      <ProdSelector />
-      <ProdDesc />
-      <ProdSelector />
-      <ProdSelector />
-
-      {products.map(({ name, unit, price }) => {
-        return (
-          <Box key={name}>
-            <Typography variant="light">
-              {unit} X {name}
-            </Typography>
-            <Typography variant="light">{unit * price}</Typography>
-          </Box>
-        );
+      {products.map(item => {
+        return <ProdSelector key={item} />;
       })}
     </>
   );
