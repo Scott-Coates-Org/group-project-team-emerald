@@ -41,16 +41,9 @@
   font-size: 1.4em;
 }
 .count {
-  font-size: 1.2em;
-  margin: 0 0.5em;
+  cursor: initial;
 }
-/* Accordion styling */
-.accordion {
-  padding: 0 5px;
-}
-.summary {
-  min-height: 100px;
-}
+
 .prodName {
   display: flex;
   align-items: center;
